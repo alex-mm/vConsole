@@ -10,6 +10,7 @@ import $ from '../lib/query.js';
 import './core.less';
 import tpl from './core.html';
 import tplTabbar from './tabbar.html';
+import legaobar from './legaobar.html';
 import tplTabbox from './tabbox.html';
 import tplTopBarItem from './topbar_item.html';
 import tplToolItem from './tool_item.html';
@@ -403,6 +404,29 @@ class VConsole {
           });
         }
         $defaultBtn.parentNode.insertBefore($item, $defaultBtn);
+      }
+    });
+    // render legao bar
+    plugin.trigger('addLegaoBar', function(toolList) {
+      if (!toolList) {
+        return;
+      }
+      let $legaoBar = $.one('.vc-legaobar', that.$dom);
+      for (let i=0; i<toolList.length; i++) {
+        let item = toolList[i];
+        let $item = $.render(tplToolItem, {
+          name: item.name || 'Undefined',
+          pluginID: plugin.id
+        });
+        if (item.global == true) {
+          $.addClass($item, 'vc-global-tool');
+        }
+        if (tool.isFunction(item.onClick)) {
+          $.bind($item, 'click', function(e) {
+            item.onClick.call($item);
+          });
+        }
+        $legaoBar.appendChild($item);
       }
     });
     // end init

@@ -11,12 +11,16 @@ import VConsolePlugin from './lib/plugin.js';
 import VConsoleDefaultTab from './log/default.js';
 import VConsoleSystemTab from './log/system.js';
 import VConsoleNetworkTab from './network/network.js';
+import VConsoleLegaoTab from './log/legao.js';
 
 // here we go
 const vConsole = new VConsole();
 
-const defaultTab = new VConsoleDefaultTab('default', 'Log');
-vConsole.addPlugin(defaultTab);
+const legaoTab = new VConsoleLegaoTab('legao', 'LegaoLog');
+vConsole.addPlugin(legaoTab);
+
+// const defaultTab = new VConsoleDefaultTab('default', 'Log');
+// vConsole.addPlugin(defaultTab);
 
 const systemTab = new VConsoleSystemTab('system', 'System');
 vConsole.addPlugin(systemTab);

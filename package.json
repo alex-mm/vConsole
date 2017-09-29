@@ -6,6 +6,8 @@
   "main": "dist/vconsole.min.js",
   "scripts": {
     "test": "mocha",
+    "start": "anywhere",
+    "build": "webpack",
     "dist": "webpack && npm test"
   },
   "keywords": [
